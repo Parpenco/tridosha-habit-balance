@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Parpenco Tridosha Habit Balance</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#f3f7f2;
+    color:#26352b;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:15px;
+}
+
+/* ================= HEADER ================= */
+
+.header{
+    text-align:center;
+    background:#0b6b3a;
+    color:white;
+    padding:20px 12px;
+    border-radius:0 0 22px 22px;
+    margin-bottom:18px;
+}
+
+.company{
+    font-size:20px;
+    font-weight:bold;
+    letter-spacing:.5px;
+    margin-bottom:8px;
+}
+
+.location{
+    font-size:14px;
+    margin-bottom:12px;
+}
+
+.header h1{
+    margin:0;
+    font-size:28px;
+}
+
+.header p{
+    margin:8px 0 0;
+    font-size:14px;
+}
+
+
+/* ================= DOSHA BOX ================= */
+
+.dosha-container{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin-bottom:18px;
+}
+
+.dosha-box{
+    background:white;
+    border-radius:16px;
+    padding:15px 10px;
+    text-align:center;
+    box-shadow:0 3px 10px rgba(0,0,0,.10);
+    border-top:6px solid;
+}
+
+.vata{
+    border-color:#527a6b;
+}
+
+.pitta{
+    border-color:#d36b24;
+}
+
+.kapha{
+    border-color:#5c8b3d;
+}
+
+.dosha-name{
+    font-size:20px;
+    font-weight:bold;
+}
+
+.percent{
+    font-size:30px;
+    font-weight:bold;
+    margin:8px 0;
+}
+
+.bar{
+    height:9px;
+    background:#e5e5e5;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.fill{
+    height:100%;
+    width:0%;
+    transition:.4s;
+}
+
+.vata .fill{
+    background:#527a6b;
+}
+
+.pitta .fill{
+    background:#d36b24;
+}
+
+.kapha .fill{
+    background:#5c8b3d;
+}
+
+
+/* ================= RESULT ================= */
+
+.result{
+    background:white;
+    border-radius:16px;
+    padding:18px;
+    text-align:center;
+    box-shadow:0 3px 10px rgba(0,0,0,.08);
+    margin-bottom:20px;
+}
+
+.result-title{
+    font-size:22px;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+.result-text{
+    font-size:15px;
+    line-height:1.6;
+}
+
+.possible{
+    margin-top:12px;
+    padding:12px;
+    border-radius:10px;
+    background:#fff8e8;
+    font-size:14px;
+    line-height:1.6;
+}
+
+.dominant{
+    font-weight:bold;
+    font-size:19px;
+}
+
+
+/* ================= HABITS ================= */
+
+.section-title{
+    font-size:22px;
+    font-weight:bold;
+    margin:22px 0 12px;
+    color:#0b6b3a;
+}
+
+.instruction{
+    background:#e9f3ec;
+    padding:12px;
+    border-radius:10px;
+    font-size:14px;
+    margin-bottom:12px;
+    line-height:1.5;
+}
+
+.habit{
+    background:white;
+    margin-top:9px;
+    padding:13px;
+    border-radius:12px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    gap:10px;
+
+    cursor:pointer;
+
+    box-shadow:0 2px 7px rgba(0,0,0,.08);
+
+    border:2px solid transparent;
+
+    transition:.2s;
+}
+
+.habit:hover{
+    border-color:#0b6b3a;
+}
+
+.habit:active{
+    transform:scale(.98);
+}
+
+.habit-text{
+    font-size:15px;
+    line-height:1.4;
+}
+
+.click-info{
+    min-width:78px;
+    text-align:center;
+    font-size:12px;
+    font-weight:bold;
+    color:#777;
+}
+
+.badge{
+    display:inline-block;
+    background:#e9f3ec;
+    color:#0b6b3a;
+    padding:4px 8px;
+    border-radius:20px;
+    margin-top:5px;
+    font-size:11px;
+}
+
+
+/* ================= RESET ================= */
+
+.reset{
+    width:100%;
+    border:none;
+    background:#b52b2b;
+    color:white;
+
+    padding:15px;
+
+    font-size:18px;
+    font-weight:bold;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    margin:18px 0 25px;
+}
+
+.reset:hover{
+    background:#941f1f;
+}
+
+
+/* ================= NOTE ================= */
+
+.note{
+    text-align:center;
+    font-size:12px;
+    color:#666;
+    line-height:1.5;
+    padding-bottom:20px;
+}
+
+
+/* ================= MOBILE ================= */
+
+@media(max-width:600px){
+
+    .company{
+        font-size:17px;
+    }
+
+    .header h1{
+        font-size:24px;
+    }
+
+    .dosha-container{
+        gap:7px;
+    }
+
+    .dosha-box{
+        padding:12px 6px;
+    }
+
+    .dosha-name{
+        font-size:16px;
+    }
+
+    .percent{
+        font-size:24px;
+    }
+
+    .habit{
+        padding:11px 10px;
+    }
+
+    .habit-text{
+        font-size:14px;
+    }
+
+    .click-info{
+        min-width:68px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<!-- ================= HEADER ================= -->
+
+<div class="header">
+
+    <div class="company">
+        Parpenco Healthcare Remedies
+    </div>
+
+    <div class="location">
+        Haridwar, Uttarakhand
+    </div>
+
+    <h1>
+         Tridosha Habit Balance
+    </h1>
+
+    <p>
+        Discover how daily habits may influence Vata, Pitta & Kapha
+    </p>
+
+</div>
+
+
+
+<!-- ================= DOSHA ================= -->
+
+<div class="dosha-container">
+
+
+    <div class="dosha-box vata">
+
+        <div class="dosha-name">
+             Vata
+        </div>
+
+        <div class="percent" id="vataPercent">
+            0%
+        </div>
+
+        <div class="bar">
+            <div class="fill" id="vataBar"></div>
+        </div>
+
+    </div>
+
+
+
+    <div class="dosha-box pitta">
+
+        <div class="dosha-name">
+            Pitta
+        </div>
+
+        <div class="percent" id="pittaPercent">
+            0%
+        </div>
+
+        <div class="bar">
+            <div class="fill" id="pittaBar"></div>
+        </div>
+
+    </div>
+
+
+
+    <div class="dosha-box kapha">
+
+        <div class="dosha-name">
+            Kapha
+        </div>
+
+        <div class="percent" id="kaphaPercent">
+            0%
+        </div>
+
+        <div class="bar">
+            <div class="fill" id="kaphaBar"></div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- ================= RESULT ================= -->
+
+<div class="result">
+
+    <div class="result-title" id="resultTitle">
+        Tridosha Balance
+    </div>
+
+    <div class="result-text" id="resultText">
+
+        No habit has been selected yet.
+        Select your daily habits below.
+
+    </div>
+
+    <div class="possible"
+         id="possible">
+
+        Possible Ayurvedic health concerns will appear here.
+
+    </div>
+
+</div>
+
+
+
+<!-- ================= HABITS ================= -->
+
+<div class="section-title">
+
+     Select Your Bad Habits
+
+</div>
+
+
+<div class="instruction">
+
+    Click on each habit according to your frequency:
+    <b>1st click = low influence</b>,
+    <b>2nd click = moderate influence</b>,
+    <b>3rd click = high influence</b>.
+
+    You can click each habit maximum 3 times.
+
+</div>
+
+
+<div id="habits"></div>
+
+
+
+<!-- ================= RESET ================= -->
+
+<button class="reset" onclick="resetGame()">
+
+     RESET
+
+</button>
+
+
+
+<div class="note">
+
+    Educational Ayurvedic simulator only.
+    The displayed percentages and possible concerns are not
+    medical measurements or a medical diagnosis.
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+
+/* ==================================================
+   INITIAL DOSHA SCORE
+================================================== */
+
+let dosha = {
+
+    vata:0,
+    pitta:0,
+    kapha:0
+
+};
+
+
+
+/* ==================================================
+   15 MAIN HABITS
+
+   Effect format:
+
+   [Vata, Pitta, Kapha]
+
+================================================== */
+
+const habits = [
+
+{
+    name:"Irregular meal timings",
+    effect:[5,2,1]
+},
+
+{
+    name:"Excessive stress and worrying",
+    effect:[4,4,1]
+},
+
+{
+    name:"Staying awake late at night",
+    effect:[4,3,1]
+},
+
+{
+    name:"Excessive fasting or skipping meals",
+    effect:[5,2,1]
+},
+
+{
+    name:"Excessive spicy, sour or salty food",
+    effect:[1,5,2]
+},
+
+{
+    name:"Excessive tea, coffee or stimulants",
+    effect:[3,4,1]
+},
+
+{
+    name:"Smoking or alcohol consumption",
+    effect:[3,5,2]
+},
+
+{
+    name:"Overeating or eating without hunger",
+    effect:[1,2,5]
+},
+
+{
+    name:"Excessive sweets, oily or heavy foods",
+    effect:[1,3,5]
+},
+
+{
+    name:"Frequent junk food / fast food",
+    effect:[1,3,5]
+},
+
+{
+    name:"Lack of exercise / sedentary lifestyle",
+    effect:[2,1,5]
+},
+
+{
+    name:"Daytime sleeping or oversleeping",
+    effect:[2,1,5]
+},
+
+{
+    name:"Eating heavy meals late at night",
+    effect:[2,4,5]
+},
+
+{
+    name:"Excessive physical exercise or overexertion",
+    effect:[5,4,1]
+},
+
+{
+    name:"Suppressing natural bodily urges",
+    effect:[5,2,1]
+}
+
+];
+
+
+
+/* ==================================================
+   CLICK COUNTER
+================================================== */
+
+let clickCount = [];
+
+habits.forEach((habit,index)=>{
+
+    clickCount[index] = 0;
+
+});
+
+
+
+/* ==================================================
+   CREATE HABITS
+================================================== */
+
+const habitsContainer =
+    document.getElementById("habits");
+
+
+habits.forEach((habit,index)=>{
+
+
+    const div =
+        document.createElement("div");
+
+
+    div.className = "habit";
+
+
+    div.innerHTML = `
+
+        <div class="habit-text">
+
+            ${index+1}. ${habit.name}
+
+            <div>
+
+                <span class="badge">
+
+                    Vata ${habit.effect[0]} |
+                    Pitta ${habit.effect[1]} |
+                    Kapha ${habit.effect[2]}
+
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="click-info"
+             id="click-${index}">
+
+            0 / 3 Clicks
+
+        </div>
+
+    `;
+
+
+
+    div.onclick = function(){
+
+        if(clickCount[index] >= 3){
+
+            return;
+
+        }
+
+
+        clickCount[index]++;
+
+
+        const multiplier =
+            clickCount[index];
+
+
+        dosha.vata +=
+            habit.effect[0] * multiplier;
+
+
+        dosha.pitta +=
+            habit.effect[1] * multiplier;
+
+
+        dosha.kapha +=
+            habit.effect[2] * multiplier;
+
+
+
+        document.getElementById(
+            "click-"+index
+        ).innerText =
+            clickCount[index] + " / 3 Clicks";
+
+
+        updateDisplay();
+
+    };
+
+
+    habitsContainer.appendChild(div);
+
+});
+
+
+
+/* ==================================================
+   UPDATE DOSHA DISPLAY
+================================================== */
+
+function updateDisplay(){
+
+
+    dosha.vata =
+        Math.min(dosha.vata,100);
+
+
+    dosha.pitta =
+        Math.min(dosha.pitta,100);
+
+
+    dosha.kapha =
+        Math.min(dosha.kapha,100);
+
+
+
+    document.getElementById(
+        "vataPercent"
+    ).innerText =
+        Math.round(dosha.vata)+"%";
+
+
+    document.getElementById(
+        "pittaPercent"
+    ).innerText =
+        Math.round(dosha.pitta)+"%";
+
+
+    document.getElementById(
+        "kaphaPercent"
+    ).innerText =
+        Math.round(dosha.kapha)+"%";
+
+
+
+    document.getElementById(
+        "vataBar"
+    ).style.width =
+        dosha.vata+"%";
+
+
+    document.getElementById(
+        "pittaBar"
+    ).style.width =
+        dosha.pitta+"%";
+
+
+    document.getElementById(
+        "kaphaBar"
+    ).style.width =
+        dosha.kapha+"%";
+
+
+
+    updateResult();
+
+}
+
+
+
+/* ==================================================
+   RESULT
+================================================== */
+
+function updateResult(){
+
+
+    const title =
+        document.getElementById("resultTitle");
+
+
+    const text =
+        document.getElementById("resultText");
+
+
+    const possible =
+        document.getElementById("possible");
+
+
+
+    const values = [
+
+        dosha.vata,
+        dosha.pitta,
+        dosha.kapha
+
+    ];
+
+
+    const max =
+        Math.max(...values);
+
+
+
+    /* No habits */
+
+    if(max === 0){
+
+        title.innerText =
+            "Tridosha Balance";
+
+
+        text.innerText =
+            "No habit has been selected yet. " +
+            "Select your daily habits below.";
+
+
+        possible.innerText =
+            "Possible Ayurvedic health concerns will appear here.";
+
+        return;
+
+    }
+
+
+
+    /* Find dominant Dosha */
+
+    let dominant = "";
+
+    let concern = "";
+
+
+
+    if(
+
+        dosha.vata === max &&
+        dosha.pitta === max &&
+        dosha.kapha === max
+
+    ){
+
+        dominant =
+            "Vata • Pitta • Kapha";
+
+
+        concern =
+            "Possible concerns may include digestive discomfort, " +
+            "fatigue, irregular appetite and general lifestyle imbalance.";
+
+    }
+
+
+    else if(
+
+        dosha.vata === max &&
+        dosha.pitta === max
+
+    ){
+
+        dominant =
+            "Vata + Pitta";
+
+
+        concern =
+            "Possible concerns may include acidity, indigestion, " +
+            "bloating, restlessness and irregular digestion.";
+
+    }
+
+
+    else if(
+
+        dosha.vata === max &&
+        dosha.kapha === max
+
+    ){
+
+        dominant =
+            "Vata + Kapha";
+
+
+        concern =
+            "Possible concerns may include bloating, constipation, " +
+            "heaviness, sluggish digestion and fatigue.";
+
+    }
+
+
+    else if(
+
+        dosha.pitta === max &&
+        dosha.kapha === max
+
+    ){
+
+        dominant =
+            "Pitta + Kapha";
+
+
+        concern =
+            "Possible concerns may include acidity, heaviness, " +
+            "sluggish digestion and appetite-related discomfort.";
+
+    }
+
+
+    else if(dosha.vata === max){
+
+        dominant =
+            "Vata";
+
+
+        concern =
+            "Possible Ayurvedic concerns: gas, bloating, constipation, " +
+            "dryness, restlessness and irregular digestion.";
+
+    }
+
+
+    else if(dosha.pitta === max){
+
+        dominant =
+            "Pitta";
+
+
+        concern =
+            "Possible Ayurvedic concerns: acidity, heartburn, " +
+            "indigestion, burning sensation and irritability.";
+
+    }
+
+
+    else{
+
+        dominant =
+            "Kapha";
+
+
+        concern =
+            "Possible Ayurvedic concerns: heaviness, sluggish digestion, " +
+            "lethargy and tendency toward excess weight.";
+
+    }
+
+
+
+    /* Warning level */
+
+    if(max < 25){
+
+        title.innerText =
+            " Low Influence";
+
+        text.innerHTML =
+            "Current dominant pattern: " +
+            "<span class='dominant'>"+
+            dominant+
+            "</span>.";
+
+    }
+
+
+    else if(max < 50){
+
+        title.innerText =
+            "Caution";
+
+        text.innerHTML =
+            "Current dominant pattern: " +
+            "<span class='dominant'>"+
+            dominant+
+            "</span>. " +
+            "Consider reducing unhealthy habits.";
+
+    }
+
+
+    else if(max < 75){
+
+        title.innerText =
+            "Warning";
+
+        text.innerHTML =
+            "Current dominant pattern: " +
+            "<span class='dominant'>"+
+            dominant+
+            "</span>. " +
+            "Your selected habits are showing a higher potential influence.";
+
+    }
+
+
+    else{
+
+        title.innerText =
+            "High Warning";
+
+        text.innerHTML =
+            "Current dominant pattern: " +
+            "<span class='dominant'>"+
+            dominant+
+            "</span>. " +
+            "A large number of high-impact habits have been selected.";
+
+    }
+
+
+
+    possible.innerHTML =
+        "<b>Possible Ayurvedic health concerns:</b><br>"+
+        concern;
+
+}
+
+
+
+/* ==================================================
+   RESET
+================================================== */
+
+function resetGame(){
+
+
+    dosha.vata = 0;
+
+    dosha.pitta = 0;
+
+    dosha.kapha = 0;
+
+
+
+    habits.forEach((habit,index)=>{
+
+        clickCount[index] = 0;
+
+
+        document.getElementById(
+            "click-"+index
+        ).innerText =
+            "0 / 3 Clicks";
+
+    });
+
+
+
+    updateDisplay();
+
+
+
+    window.scrollTo({
+
+        top:0,
+
+        behavior:"smooth"
+
+    });
+
+}
+
+
+</script>
+
+
+</body>
+</html>
