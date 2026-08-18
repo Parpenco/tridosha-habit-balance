@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ABC Fun Learning</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:linear-gradient(135deg,#fff4a8,#b9f4ff,#ffd2ec);
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+}
+
+.game{
+width:94%;
+max-width:520px;
+background:white;
+border-radius:30px;
+padding:20px;
+text-align:center;
+box-shadow:0 10px 35px #999;
+position:relative;
+overflow:hidden;
+}
+
+h1{
+color:#743bd9;
+font-size:30px;
+margin:5px;
+}
+.brand{
+text-align:center;
+font-size:20px;
+font-weight:bold;
+color:#147a45;
+margin-bottom:8px;
+}
+.subtitle{
+color:#666;
+margin-bottom:10px;
+}
+
+.card{
+background:#f7f4ff;
+border:4px solid #ffd83d;
+border-radius:25px;
+padding:15px;
+}
+
+.letter{
+font-size:140px;
+font-weight:bold;
+color:#ff5688;
+text-shadow:4px 5px #ffe36e;
+animation:bounce .8s;
+}
+
+.picture{
+font-size:85px;
+animation:float 1.5s infinite;
+}
+
+.word{
+font-size:32px;
+font-weight:bold;
+color:#385bd5;
+margin:8px;
+}
+
+button{
+border:0;
+border-radius:18px;
+padding:13px 18px;
+margin:6px;
+font-size:17px;
+font-weight:bold;
+cursor:pointer;
+box-shadow:0 5px #bbb;
+}
+
+button:active{
+transform:translateY(4px);
+box-shadow:0 1px #aaa;
+}
+
+.start{
+background:#ff5688;
+color:white;
+font-size:22px;
+}
+
+.next{
+background:#4fd267;
+color:white;
+}
+
+.prev{
+background:#ff9850;
+color:white;
+}
+
+.sound{
+background:#27b4d0;
+color:white;
+}
+
+.music{
+background:#7654df;
+color:white;
+}
+
+@keyframes bounce{
+0%{transform:scale(.3);opacity:0}
+70%{transform:scale(1.1)}
+100%{transform:scale(1);opacity:1}
+}
+
+@keyframes float{
+50%{transform:translateY(-10px)}
+}
+
+.star{
+position:absolute;
+font-size:25px;
+animation:star 2s linear forwards;
+pointer-events:none;
+}
+
+@keyframes star{
+from{
+transform:translateY(0) scale(.5);
+opacity:1;
+}
+to{
+transform:translateY(-180px) scale(1.5);
+opacity:0;
+}
+}
+
+.progress{
+margin-top:10px;
+color:#777;
+}
+
+.startScreen{
+position:absolute;
+inset:0;
+background:white;
+z-index:5;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:30px;
+}
+
+.startScreen h2{
+font-size:34px;
+color:#ff5688;
+}
+</style>
+</head>
+
+<body>
+
+<div class="game">
+<div class="brand">
+  🌿 PARPENCO HEALTHCARE REMEDIES 🌿
+  <small>HARIDWAR</small>
+</div>
+<div class="startScreen" id="startScreen">
+
+<h2>🌈 ABC FUN LEARNING 🌈</h2>
+
+<p>
+Learn A to Z with Music 🎵<br>
+Animation ✨ and Pronunciation 🔊
+</p>
+
+<button class="start" onclick="startGame()">
+▶️ START
+</button>
+
+</div>
+
+<h1>🌈 ABC FUN LEARNING 🌈</h1>
+
+<div class="subtitle">
+Learn • Listen • Enjoy 🎵
+</div>
+
+<div class="card">
+
+<div class="letter" id="letter">A</div>
+
+<div class="picture" id="picture">🍎</div>
+
+<div class="word" id="word">
+APPLE
+</div>
+
+</div>
+
+<button class="sound" onclick="speak()">
+🔊 Hear
+</button>
+
+<button class="music" id="musicBtn" onclick="toggleMusic()">
+🎵 Music ON
+</button>
+
+<br>
+
+<button class="prev" onclick="changeLetter(-1)">
+⬅️ Previous
+</button>
+
+<button class="next" onclick="changeLetter(1)">
+Next ➡️
+</button>
+
+<div class="progress" id="progress">
+A • 1 / 26
+</div>
+
+</div>
+
+<script>
+
+const abc=[
+
+["A","APPLE","🍎"],
+["B","BALL","⚽"],
+["C","CAT","🐱"],
+["D","DOG","🐶"],
+["E","ELEPHANT","🐘"],
+["F","FISH","🐟"],
+["G","GRAPES","🍇"],
+["H","HAT","🎩"],
+["I","ICE CREAM","🍦"],
+["J","JUICE","🧃"],
+["K","KITE","🪁"],
+["L","LION","🦁"],
+["M","MANGO","🥭"],
+["N","NOSE","👃"],
+["O","ORANGE","🍊"],
+["P","PARROT","🦜"],
+["Q","QUEEN","👑"],
+["R","RABBIT","🐰"],
+["S","SUN","☀️"],
+["T","TIGER","🐯"],
+["U","UMBRELLA","☂️"],
+["V","VIOLIN","🎻"],
+["W","WATCH","⌚"],
+["X","XYLOPHONE","🎼"],
+["Y","YAK","🐂"],
+["Z","ZEBRA","🦓"]
+
+];
+
+let current=0;
+let music=true;
+let audio;
+
+function startGame(){
+
+document.getElementById("startScreen").style.display="none";
+
+initAudio();
+
+speak();
+
+stars();
+
+playMusic();
+
+}
+
+function initAudio(){
+
+audio=new (window.AudioContext||
+window.webkitAudioContext)();
+
+}
+
+function tone(freq,time,delay){
+
+if(!music)return;
+
+let oscillator=audio.createOscillator();
+
+let gain=audio.createGain();
+
+oscillator.frequency.value=freq;
+
+oscillator.connect(gain);
+
+gain.connect(audio.destination);
+
+gain.gain.value=0.05;
+
+oscillator.start(audio.currentTime+delay);
+
+oscillator.stop(audio.currentTime+delay+time);
+
+}
+
+function playMusic(){
+
+if(!music)return;
+
+tone(523,.2,0);
+tone(659,.2,.25);
+tone(784,.2,.5);
+tone(659,.2,.75);
+
+}
+
+function toggleMusic(){
+
+music=!music;
+
+document.getElementById("musicBtn").innerHTML=
+music ? "🎵 Music ON":"🔇 Music OFF";
+
+if(music){
+
+playMusic();
+
+}
+
+}
+
+function speak(){
+
+let item=abc[current];
+
+if("speechSynthesis" in window){
+
+speechSynthesis.cancel();
+
+let voice=new SpeechSynthesisUtterance(
+item[0]+" for "+item[1]
+);
+
+voice.rate=.75;
+voice.pitch=1.2;
+
+speechSynthesis.speak(voice);
+
+}
+
+if(audio && music){
+
+tone(784,.15,0);
+tone(988,.18,.18);
+
+}
+
+}
+
+function changeLetter(step){
+
+current+=step;
+
+if(current<0)
+current=25;
+
+if(current>25)
+current=0;
+
+let item=abc[current];
+
+document.getElementById("letter").innerHTML=item[0];
+
+document.getElementById("picture").innerHTML=item[2];
+
+document.getElementById("word").innerHTML=item[1];
+
+document.getElementById("progress").innerHTML=
+item[0]+" • "+(current+1)+" / 26";
+
+document.getElementById("letter").style.animation="none";
+
+setTimeout(function(){
+
+document.getElementById("letter").style.animation=
+"bounce .8s";
+
+},20);
+
+speak();
+
+stars();
+
+if(current==25){
+
+setTimeout(function(){
+
+alert("🎉 GREAT JOB! 🎉\n\nYou completed ABC!");
+
+},500);
+
+}
+
+}
+
+function stars(){
+
+for(let i=0;i<7;i++){
+
+let star=document.createElement("div");
+
+star.className="star";
+
+star.innerHTML=["⭐","✨","🌟","💫"][i%4];
+
+star.style.left=(10+
+Math.random()*80)+"%";
+
+star.style.top=(50+
+Math.random()*30)+"%";
+
+document.querySelector(".game")
+.appendChild(star);
+
+setTimeout(function(){
+
+star.remove();
+
+},2000);
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
