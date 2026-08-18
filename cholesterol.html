@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cholesterol Journey | Parpenco Healthcare Remedies</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,"Noto Sans Devanagari",sans-serif;
+  background:linear-gradient(180deg,#f4fff8,#fffaf0);
+  color:#18352b;
+  line-height:1.6;
+}
+
+.container{
+  max-width:850px;
+  margin:auto;
+  padding:15px;
+}
+
+/* Header */
+.header{
+  text-align:center;
+  background:linear-gradient(135deg,#075e36,#12824d);
+  color:white;
+  padding:22px 15px;
+  border-radius:0 0 28px 28px;
+  box-shadow:0 5px 20px #0002;
+}
+
+.brand{
+  font-size:17px;
+  font-weight:bold;
+  letter-spacing:.5px;
+}
+
+.header h1{
+  font-size:32px;
+  margin:8px 0;
+}
+
+.header p{
+  font-size:15px;
+}
+
+/* Journey */
+.journey{
+  margin-top:25px;
+}
+
+.stage{
+  display:none;
+  animation:fade .6s ease;
+}
+
+.stage.active{
+  display:block;
+}
+
+@keyframes fade{
+  from{opacity:0;transform:translateY(20px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+.number{
+  width:55px;
+  height:55px;
+  background:#0b7040;
+  color:white;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:25px;
+  margin:auto;
+  box-shadow:0 5px 15px #075e3650;
+}
+
+.stage h2{
+  text-align:center;
+  margin:12px 0 5px;
+  color:#075e36;
+  font-size:27px;
+}
+
+.subtitle{
+  text-align:center;
+  color:#666;
+  margin-bottom:20px;
+}
+
+/* Illustration */
+.illustration{
+  background:white;
+  border-radius:22px;
+  padding:25px 15px;
+  text-align:center;
+  min-height:190px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 5px 18px #00000012;
+  margin-bottom:18px;
+}
+
+.big-icon{
+  font-size:90px;
+  animation:float 2s infinite ease-in-out;
+}
+
+@keyframes float{
+  50%{transform:translateY(-8px);}
+}
+
+.info{
+  background:white;
+  padding:20px;
+  border-radius:18px;
+  box-shadow:0 4px 15px #00000010;
+}
+
+.info strong{
+  color:#075e36;
+}
+
+/* Lipid cards */
+.lipids{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-top:18px;
+}
+
+.lipid{
+  background:white;
+  padding:17px 10px;
+  border-radius:18px;
+  text-align:center;
+  box-shadow:0 4px 14px #00000010;
+}
+
+.lipid .icon{
+  font-size:38px;
+}
+
+.lipid h3{
+  margin:5px 0;
+}
+
+.ldl{border-top:5px solid #d73535;}
+.hdl{border-top:5px solid #199653;}
+.trig{border-top:5px solid #ed941f;}
+
+/* Artery */
+.artery{
+  height:130px;
+  background:#e9b6b6;
+  border-radius:70px;
+  margin:20px 0;
+  padding:20px;
+  overflow:hidden;
+  position:relative;
+  border:8px solid #d98585;
+}
+
+.blood{
+  height:100%;
+  background:#b83232;
+  border-radius:50px;
+  position:relative;
+  overflow:hidden;
+}
+
+.cell{
+  position:absolute;
+  width:23px;
+  height:15px;
+  border-radius:50%;
+  background:#f07878;
+  opacity:.8;
+  animation:move 4s linear infinite;
+}
+
+.cell:nth-child(1){top:25px;left:5%;animation-delay:0s;}
+.cell:nth-child(2){top:55px;left:30%;animation-delay:1s;}
+.cell:nth-child(3){top:20px;left:60%;animation-delay:2s;}
+.cell:nth-child(4){top:65px;left:80%;animation-delay:3s;}
+
+@keyframes move{
+  from{transform:translateX(-100px);}
+  to{transform:translateX(700px);}
+}
+
+.plaque{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:0;
+  background:#e2a323;
+  transition:height 1s;
+}
+
+.artery.blocked .plaque{
+  height:38%;
+}
+
+.artery.blocked .blood{
+  width:72%;
+  margin:auto;
+}
+
+/* Buttons */
+.buttons{
+  display:flex;
+  gap:12px;
+  margin:22px 0;
+}
+
+button{
+  flex:1;
+  border:none;
+  padding:14px;
+  border-radius:14px;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.prev{
+  background:#e5eee9;
+  color:#075e36;
+}
+
+.next{
+  background:#075e36;
+  color:white;
+}
+
+.progress{
+  height:8px;
+  background:#dce9e1;
+  border-radius:10px;
+  overflow:hidden;
+}
+
+.progress-bar{
+  height:100%;
+  width:16.6%;
+  background:#075e36;
+  transition:width .4s;
+}
+
+/* Final */
+.final{
+  background:linear-gradient(135deg,#075e36,#1b9b5d);
+  color:white;
+  border-radius:22px;
+  padding:25px;
+  margin-top:20px;
+}
+
+.final h2{
+  margin-bottom:10px;
+}
+
+.disclaimer{
+  background:#fff3cd;
+  color:#654c00;
+  padding:15px;
+  border-radius:14px;
+  margin-top:18px;
+  font-size:13px;
+}
+
+.footer{
+  text-align:center;
+  margin:25px 0 10px;
+  color:#666;
+  font-size:13px;
+}
+
+@media(max-width:600px){
+  .header h1{font-size:27px;}
+  .lipids{grid-template-columns:1fr;}
+  .big-icon{font-size:75px;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="brand">PARPENCO HEALTHCARE REMEDIES • HARIDWAR</div>
+  <h1>🫀 Cholesterol Journey</h1>
+  <p>शरीर में Cholesterol का सफर आसान और रोचक तरीके से समझें</p>
+</div>
+
+<div class="container">
+
+<div class="progress">
+  <div class="progress-bar" id="progressBar"></div>
+</div>
+
+<div class="journey">
+
+<!-- STEP 1 -->
+<section class="stage active">
+  <div class="number">1</div>
+  <h2>🍔 भोजन</h2>
+  <div class="subtitle">Journey की शुरुआत</div>
+
+  <div class="illustration">
+    <div class="big-icon">🍔🥑🥜</div>
+  </div>
+
+  <div class="info">
+    हमारे भोजन में मौजूद fats शरीर के लिए ऊर्जा और अन्य
+    आवश्यक कार्यों में उपयोग होते हैं। Cholesterol भी शरीर के लिए
+    आवश्यक पदार्थ है।
+  </div>
+</section>
+
+<!-- STEP 2 -->
+<section class="stage">
+  <div class="number">2</div>
+  <h2>🔄 पाचन</h2>
+  <div class="subtitle">Food से nutrients तक</div>
+
+  <div class="illustration">
+    <div class="big-icon">🍽️➡️🧬</div>
+  </div>
+
+  <div class="info">
+    पाचन के बाद भोजन से प्राप्त nutrients absorb होते हैं।
+    शरीर cholesterol और fats को process करने के लिए
+    अलग-अलग mechanisms का उपयोग करता है।
+  </div>
+</section>
+
+<!-- STEP 3 -->
+<section class="stage">
+  <div class="number">3</div>
+  <h2>🏭 Liver</h2>
+  <div class="subtitle">Cholesterol management का महत्वपूर्ण केंद्र</div>
+
+  <div class="illustration">
+    <div class="big-icon">🫀</div>
+  </div>
+
+  <div class="info">
+    <strong>Liver</strong> शरीर में cholesterol बनाने,
+    process करने और उसके metabolism में महत्वपूर्ण भूमिका निभाता है।
+  </div>
+</section>
+
+<!-- STEP 4 -->
+<section class="stage">
+  <div class="number">4</div>
+  <h2>🩸 Blood</h2>
+  <div class="subtitle">Cholesterol अकेले travel नहीं करता</div>
+
+  <div class="illustration">
+    <div class="big-icon">🩸🔴🟢</div>
+  </div>
+
+  <div class="info">
+    Cholesterol blood में lipoproteins के माध्यम से transport होता है।
+    इनमें <strong>LDL</strong> और <strong>HDL</strong> प्रमुख प्रकार हैं।
+  </div>
+
+  <div class="lipids">
+    <div class="lipid ldl">
+      <div class="icon">🔴</div>
+      <h3>LDL</h3>
+      <p>Cholesterol को tissues तक पहुँचाने में भूमिका।</p>
+    </div>
+
+    <div class="lipid hdl">
+      <div class="icon">🟢</div>
+      <h3>HDL</h3>
+      <p>Cholesterol को liver तक वापस ले जाने में भूमिका।</p>
+    </div>
+
+    <div class="lipid trig">
+      <div class="icon">🟠</div>
+      <h3>Triglycerides</h3>
+      <p>Blood में पाया जाने वाला एक प्रकार का fat।</p>
+    </div>
+  </div>
+</section>
+
+<!-- STEP 5 -->
+<section class="stage">
+  <div class="number">5</div>
+  <h2>🫀 Artery</h2>
+  <div class="subtitle">अब पहुँचते हैं blood vessels तक</div>
+
+  <div class="illustration" style="display:block">
+
+    <div class="artery">
+      <div class="blood">
+        <span class="cell"></span>
+        <span class="cell"></span>
+        <span class="cell"></span>
+        <span class="cell"></span>
+      </div>
+      <div class="plaque"></div>
+    </div>
+
+    <p>Healthy artery का सरल illustration</p>
+
+  </div>
+
+  <div class="info">
+    कुछ परिस्थितियों में LDL-related particles artery की wall में
+    जमा होकर <strong>plaque formation</strong> में योगदान कर सकते हैं।
+  </div>
+</section>
+
+<!-- STEP 6 -->
+<section class="stage">
+  <div class="number">6</div>
+  <h2>⚠️ Plaque Buildup</h2>
+  <div class="subtitle">समय के साथ क्या हो सकता है?</div>
+
+  <div class="illustration" style="display:block">
+
+    <div class="artery blocked">
+      <div class="blood">
+        <span class="cell"></span>
+        <span class="cell"></span>
+        <span class="cell"></span>
+      </div>
+      <div class="plaque"></div>
+    </div>
+
+    <p><strong>Illustration:</strong> plaque buildup के कारण artery का space कम दिखाई दे रहा है।</p>
+
+  </div>
+
+  <div class="info">
+    Plaque buildup arteries को संकरा कर सकता है और cardiovascular
+    disease का risk बढ़ा सकता है। इसलिए cholesterol profile और
+    overall heart health पर ध्यान देना महत्वपूर्ण है।
+  </div>
+
+  <div class="final">
+    <h2>❤️ Journey का संदेश</h2>
+    <p>
+      Cholesterol शरीर के लिए आवश्यक है, लेकिन इसका संतुलन महत्वपूर्ण है।
+      Healthy diet, regular physical activity और healthcare professional
+      की सलाह के अनुसार नियमित health checks उपयोगी हो सकते हैं।
+    </p>
+  </div>
+
+  <div class="disclaimer">
+    ⚠️ <strong>महत्वपूर्ण:</strong> यह page केवल सामान्य educational
+    information के लिए है। यह diagnosis या treatment का विकल्प नहीं है।
+    अपनी lipid report या cardiovascular risk के बारे में व्यक्तिगत सलाह
+    के लिए qualified healthcare professional से संपर्क करें।
+  </div>
+
+</section>
+
+</div>
+
+<div class="buttons">
+  <button class="prev" onclick="changeStage(-1)">← पिछला</button>
+  <button class="next" onclick="changeStage(1)">अगला →</button>
+</div>
+
+<div class="footer">
+  © Parpenco Healthcare Remedies, Haridwar
+</div>
+
+</div>
+
+<script>
+
+let current = 0;
+
+const stages = document.querySelectorAll(".stage");
+const progress = document.getElementById("progressBar");
+
+function showStage(index){
+
+  stages.forEach((stage,i)=>{
+    stage.classList.toggle("active",i === index);
+  });
+
+  let percent = ((index + 1) / stages.length) * 100;
+  progress.style.width = percent + "%";
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+
+function changeStage(direction){
+
+  current += direction;
+
+  if(current < 0){
+    current = 0;
+  }
+
+  if(current >= stages.length){
+    current = stages.length - 1;
+  }
+
+  showStage(current);
+}
+
+showStage(current);
+
+</script>
+
+</body>
+</html>
